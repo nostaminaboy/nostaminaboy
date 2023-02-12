@@ -15,7 +15,9 @@
   <% @papers.each do |t| %>
     <%= page_entries_info @papers %>
     <div class="tweet">
+    <% if user_signed_in? %>
       <br><%= link_to t.user.name, user_path(t.user.id) %>
+    <% end %>
       <br><B>Title</B>:<%= t.title %>
       <br><B>Author</B>:<%= t.author %>
       <br><B>Year</B>:<%= t.year %>
