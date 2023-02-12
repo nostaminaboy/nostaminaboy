@@ -1,0 +1,47 @@
+<h1>論文管理ツール</h1>
+<h3>編集</h3>
+
+<%= form_for @paper do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 50 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %>
+    <%= f.text_field :author, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :year %> 
+    <%= f.text_field :year, :size => 10 %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :journal %>
+    <%= f.text_field :journal, :size => 20 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject %>
+    <%= f.text_field :subject, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Purpose  %>
+    <%= f.text_area :purpose, :size => "60x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Method  %>
+    <%= f.text_area :method, :size => "60x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Result  %>
+    <%= f.text_area :result, :size => "60x2" %>
+  </div>
+    <%= f.submit "編集する" %>
+    <p><%= link_to "Tweet一覧に戻る", papers_path %></p>
+  <% end %>

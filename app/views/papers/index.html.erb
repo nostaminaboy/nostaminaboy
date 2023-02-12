@@ -1,0 +1,37 @@
+<h1>論文管理ツール</h1>
+<h3>論文一覧ページ</h3>
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"papers",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+
+<br><%= link_to "新規論文へ", new_paper_path %>
+
+<div class="tweets-container">
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+  <% @papers.each do |t| %>
+    <%= page_entries_info @papers %>
+    <div class="tweet">
+      <br><%= link_to t.user.name, user_path(t.user.id) %>
+      <br><B>Title</B>:<%= t.title %>
+      <br><B>Author</B>:<%= t.author %>
+      <br><B>Year</B>:<%= t.year %>
+      <br><B>Journal</B>:<%= t.journal %>
+      <br><B>Subject</B>:<%= t.subject %>
+      <br><B>Purpose</B>:<%= t.purpose %>
+      <br><B>Method</B>:<%= t.method %>
+      <br><B>Result</B>:<%= t.result %>
+      <br><%= link_to "詳細", paper_path(t.id) %> 
+      <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_paper_path(t.id) %>
+      <%= link_to "削除する", paper_path(t.id), method: :delete %>
+    <% end %>
+
+    </div>
+   
+  <% end %>
+</div>
+<%= paginate @papers %>
